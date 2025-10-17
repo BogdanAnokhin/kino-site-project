@@ -1,0 +1,28 @@
+body {
+    font-family: Arial, sans-serif;
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 0 15px;
+  }
+  button {
+    padding: 8px 12px;
+    margin: 5px 3px;
+    cursor: pointer;
+  }
+  .seat {
+    display: inline-block;
+    width: 30px; height: 30px;
+    line-height: 30px;
+    margin: 3px;
+    border: 1px solid #333;
+    text-align: center;
+    user-select: none;
+  }
+  .taken {
+    background: #ccc;
+    cursor: not-allowed;
+  }
+  .selected {
+    background: #4caf50;
+    color: white;
+  }
