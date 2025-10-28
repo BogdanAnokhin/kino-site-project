@@ -117,9 +117,6 @@
 
 <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
 <script>
-
-  alert("Accept all coockies?")
-
   const { createApp, ref, reactive } = Vue;
 
   createApp({
@@ -137,11 +134,11 @@
         { id: 'A1', taken: false },
         { id: 'A2', taken: true },
         { id: 'A3', taken: false },
-        { id: 'A4', taken: true },
+        { id: 'A4', taken: false },
         { id: 'B1', taken: false },
-        { id: 'B2', taken: true },
-        { id: 'B3', taken: false },
-        { id: 'B4', taken: true },
+        { id: 'B2', taken: false },
+        { id: 'B3', taken: true },
+        { id: 'B4', taken: false },
       ]);
 
       const selectedMovie = ref(null);
@@ -171,7 +168,8 @@
           selectedSeats.value.splice(index, 1);
         }
       }
-       function toPayment() {
+
+      function toPayment() {
         if (selectedSeats.value.length === 0) {
           alert('Выберите хотя бы одно место');
           return;
@@ -200,7 +198,6 @@
         selectMovie, selectShowtime, toggleSeat,
         toPayment, pay, reset,
       }
-     
     }
   }).mount('#app');
 </script>
