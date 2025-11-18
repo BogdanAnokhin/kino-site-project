@@ -1,156 +1,118 @@
 <template>
-  <h1>Кинотеатр</h1>
+  <div class="main-page">
+    <h1>Афиша фильмов</h1>
+    <div class="movie-list">
+      <div class="movie-item" v-for="movie in movies" :key="movie.id">
+        
+        <img :src="movie.posterSmall" alt="" class="poster" />
 
-  <!-- Этап выбора фильма -->
-  <div v-if="step === 'movies'">
-    <h2>Выберите фильм</h2>
-    <div v-for="movie in movies" :key="movie.id" style="margin-bottom: 15px; border: 1px solid #ddd; padding: 10px;">
-      <img :src="movie.poster" alt="" width="100" style="vertical-align: middle; margin-right: 10px;">
-      <strong>{{ movie.title }}</strong> ({{ movie.duration }} мин, {{ movie.genre }})
-      <br />
-      <v-btn @click="selectMovie(movie)">Купить билет</v-btn>
+        
+        <div class="info">
+          <h2>{{ movie.title }}</h2>
+          <p><strong>Жанр:</strong> {{ movie.genre }}</p>
+          <p><strong>Длительность:</strong> {{ movie.length }}</p>
+          <p>{{ movie.description.substring(0, 120) }}...</p>
+
+          <router-link :to="`/movie/${movie.id}`">
+            <button class="btn">Подробнее →</button>
+          </router-link>
+        </div>
+      </div>
     </div>
-  </div>
-
-  <!-- Этап выбора сеанса -->
-  <div v-if="step === 'schedule'">
-    <h2>Выберите сеанс для "{{ selectedMovie.title }}"</h2>
-    <button v-for="time in showtimes" :key="time" @click="selectShowtime(time)">
-      {{ time }}
-    </button>
-    <br /><br />
-    <button @click="step = 'movies'">Назад</button>
-  </div>
-
-  <!-- Этап выбора мест -->
-  <div v-if="step === 'seats'">
-    <h2>Выберите места (сеанс {{ selectedShowtime }})</h2>
-    <div>
-      <span
-        v-for="seat in seats"
-        :key="seat.id"
-        class="seat"
-        :class="{
-          taken: seat.taken,
-          selected: selectedSeats.includes(seat.id)
-        }"
-        @click="toggleSeat(seat)"
-      >
-        {{ seat.id }}
-      </span>
-    </div>
-    <br />
-    <button @click="step = 'schedule'">Назад</button>
-    <button @click="toPayment" :disabled="selectedSeats.length === 0">Далее</button>
-  </div>
-
-  <!-- Этап оплаты -->
-  <div v-if="step === 'payment'">
-    <h2>Оплата билетов</h2>
-    <p>Фильм: <strong>{{ selectedMovie.title }}</strong></p>
-    <p>Сеанс: <strong>{{ selectedShowtime }}</strong></p>
-    <p>Места: <strong>{{ selectedSeats.join(', ') }}</strong></p>
-
-    <form @submit.prevent="pay">
-      <label>
-        Имя:<br />
-        <input v-model="paymentName" required />
-      </label>
-      <br /><br />
-      <label>
-        Номер карты:<br />
-        <input v-model="paymentCard" pattern="\\d{16}" maxlength="16" required title="16 цифр" />
-      </label>
-      <br /><br />
-      <button type="submit">Оплатить</button>
-    </form>
-    <br />
-    <button @click="step = 'seats'">Назад</button>
-  </div>
-
-  <!-- Подтверждение -->
-  <div v-if="step === 'confirmation'">
-    <h2>Спасибо за покупку!</h2>
-    <p>Ваш билет забронирован.</p>
-    <button @click="reset">Купить ещё</button>
   </div>
 </template>
 
 <script setup>
-import { ref, reactive } from 'vue'
-
-const step = ref('movies')
-
 const movies = [
-  { id: 1, title: 'Фильм 1', duration: 120, genre: 'Драма', poster: 'https://via.placeholder.com/100x150?text=Фильм+1' },
-  { id: 2, title: 'Фильм 2', duration: 90, genre: 'Комедия', poster: 'https://via.placeholder.com/100x150?text=Фильм+2' },
+  {
+    id: 1,
+    title: 'Põgenev mees',
+    length: '2h 13min',
+    genre: 'Märul, Ulmefilm, Thriller',
+    posterSmall: '/src/assets/poster1.jpg',
+    description: 'Mitte kuigi kauges tulevikus on riigi…'
+  },
+  {
+    id: 2,
+    title: 'The Glassworker',
+    length: '1h 30min',
+    genre: 'Анимация, Драма',
+    posterSmall: '/src/assets/poster2.jpg',
+    description: 'Описание фильма The Glassworker'
+  },
+  {
+    id: 3,
+    title: 'Фильм 3',
+    length: '1h 45min',
+    genre: 'Боевик',
+    posterSmall: '/src/assets/poster3.jpg',
+    description: 'Описание фильма 3'
+  },
+  {
+    id: 4,
+    title: 'Фильм 4',
+    length: '2h 00min',
+    genre: 'Фантастика',
+    posterSmall: '/src/assets/poster4.jpg',
+    description: 'Описание фильма 4'
+  },
+  {
+    id: 5,
+    title: 'Фильм 5',
+    length: '1h 50min',
+    genre: 'Комедия',
+    posterSmall: '/src/assets/poster5.jpg',
+    description: 'Описание фильма 5'
+  }
 ]
-
-const showtimes = ['18:00', '21:00']
-
-const seats = reactive([
-  { id: 'A1', taken: false },
-  { id: 'A2', taken: true },
-  { id: 'A3', taken: false },
-  { id: 'A4', taken: false },
-  { id: 'B1', taken: false },
-  { id: 'B2', taken: false },
-  { id: 'B3', taken: true },
-  { id: 'B4', taken: false },
-])
-
-const selectedMovie = ref(null)
-const selectedShowtime = ref(null)
-const selectedSeats = ref([])
-const paymentName = ref('')
-const paymentCard = ref('')
-
-function selectMovie(movie) {
-  selectedMovie.value = movie
-  step.value = 'schedule'
-}
-
-function selectShowtime(time) {
-  selectedShowtime.value = time
-  selectedSeats.value = []
-  step.value = 'seats'
-}
-
-function toggleSeat(seat) {
-  if (seat.taken) return
-
-  const index = selectedSeats.value.indexOf(seat.id)
-  if (index === -1) {
-    selectedSeats.value.push(seat.id)
-  } else {
-    selectedSeats.value.splice(index, 1)
-  }
-}
-
-function toPayment() {
-  if (selectedSeats.value.length === 0) {
-    alert('Выберите хотя бы одно место')
-    return
-  }
-  step.value = 'payment'
-}
-
-function pay() {
-  alert(`Спасибо, ${paymentName.value}! Оплата прошла успешно.`)
-  step.value = 'confirmation'
-}
-
-function reset() {
-  selectedMovie.value = null
-  selectedShowtime.value = null
-  selectedSeats.value = []
-  paymentName.value = ''
-  paymentCard.value = ''
-  step.value = 'movies'
-}
 </script>
 
- 
-<style  scoped>
+<style scoped>
 
+.main-page {
+  min-height: 100vh;
+  background: #111;
+  color: white;
+  padding: 20px;
+}
+
+.movie-list {
+  display: flex;
+  flex-direction: column; 
+  gap: 30px;
+}
+
+.movie-item {
+  display: flex;
+  background: #1c1c1c;
+  border-radius: 8px;
+  overflow: hidden;
+  padding: 10px;
+  gap: 20px;
+}
+
+.poster {
+  width: 200px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.info {
+  flex: 1;
+}
+
+.btn {
+  margin-top: 10px;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 6px;
+  background: #e50914;
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.btn:hover {
+  background: #f6121d;
+}
 </style>
