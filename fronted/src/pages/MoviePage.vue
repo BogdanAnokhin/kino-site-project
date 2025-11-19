@@ -37,7 +37,7 @@
         <p>{{ movie.description }}</p>
 
         <div class="buttons">
-          <router-link :to="`/booking/${movie.id}`">
+          <router-link :to="`/movie-select/${movie.id}`">
             <button class="btn booking-btn">→ Оформить билет</button>
           </router-link>
           <router-link to="/">
