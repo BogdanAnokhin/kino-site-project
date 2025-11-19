@@ -44,7 +44,7 @@ The system will display current and upcoming movies, including the following det
 4.3 Usability
 ● Website will feature options to personalize user's experience. (For instance, colour inversion, option to switch between dark and light mode respectively, etc.)
 4.4 Reliability
-●	[Fill in…]
+●	User can safely add their payment creditals that will be assessed by their local bank that will manage their payment requests with no risk of data loss.
 4.5 Scalability
 ●	[Fill in…]
 4.6 Legal and Compliance
