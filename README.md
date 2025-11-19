@@ -49,7 +49,7 @@ The system will display current and upcoming movies, including the following det
 ●	[Fill in…]
 4.6 Legal and Compliance
 ●	The application must comply with GDPR for user data protection.
-● 
+● Website must be approved by the Estonian and Digital Law before it will be distributed or uploaded to the web.
 6. System Models
 5.1 Use Case Diagram
 A use case diagram will illustrate the interactions between customers, admin staff, and the system, such as browsing movies, selecting seats, and purchasing tickets.
@@ -66,7 +66,7 @@ Data flow diagrams will depict the flow of information within the system, such a
 6.3 Software Interfaces
 ●	Depending on the software user currently utilizes, site may adapt in a way that avoids technical hinderances.
 6.4 Communication Interfaces
-●	[Fill in…]
+● Website's data will be stored on Cloudflare.
 8. Testing and Validation
 7.1 Test Case
 ●	
@@ -76,11 +76,11 @@ Data flow diagrams will depict the flow of information within the system, such a
 8.1 Maintenance Procedures
 ● Internal code and database is to be automatically backed up and changed upon the release of new content or features, as well as to restore the site in the event of cyberattack.
 8.2 Support and Helpdesk
-[Fill in…]
+● User can contact support if they will have any issues related with the website and their session.
 10. Appendices
 9.1 Glossary
 ●	SRS: Software Requirements Specification
 ●	GDPR: General Data Protection Regulation
-●	[Fill in…]
+●	
 9.2 Revision History
 ●	Document revisions will be logged with dates and descriptions of changes.
