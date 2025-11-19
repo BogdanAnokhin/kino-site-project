@@ -21,10 +21,10 @@ The Cinema Web Application will operate as a standalone system, interacting with
 ●	…
 2.4 Operating Environment
 The web application will run on modern web browsers (e.g., Chrome, Firefox, Safari) and mobile devices. 
-[Fill in…]
+Website's certificate will automatically update if it were to expire.
 2.5 Design and Implementation Constraints
 The application will use a relational database for managing movie data and user bookings. 
-[Fill in…]
+The application will feature authentication and login tools via commonly used tools such as SmartID, registration via ID card, etc.
 3. Functional Requirements
 3.1 Movie Listings
 The system will display current and upcoming movies, including the following details:
@@ -33,51 +33,51 @@ The system will display current and upcoming movies, including the following det
 ●	Available languages and subtitles
 ●	Session times for each cinema location
 3.2 Session Management
-[Fill in…]
-3.3 [Fill in…]
-3.4 [Fill in…]
+● Basic options are provided to end or start a session.
+3.3 User's session automatically expires after 15 minutes of inactivity to avoid unneccesary latency.
+3.4 Every action that requires a change of user's credintals will always follow with a 2FA authentication.
 4. Non-Functional Requirements
 4.1 Performance
-●	[Fill in…]
+● The site will not use any elements that otherwise cause performance issues or hinderances in properly loading the site.
 4.2 Security
-●	[Fill in…]
+● User's account and every change will require a 2FA authentication to confirm user's identity. Site's database will not be accessible and site's structure will always backed up in a private GitHub repository.
 4.3 Usability
-●	[Fill in…]
+● Website will feature options to personalize user's experience. (For instance, colour inversion, option to switch between dark and light mode respectively, etc.)
 4.4 Reliability
 ●	[Fill in…]
 4.5 Scalability
 ●	[Fill in…]
 4.6 Legal and Compliance
 ●	The application must comply with GDPR for user data protection.
-●	[Fill in…]
-5. System Models
+● 
+6. System Models
 5.1 Use Case Diagram
 A use case diagram will illustrate the interactions between customers, admin staff, and the system, such as browsing movies, selecting seats, and purchasing tickets.
 5.2 Sequence Diagrams
 Sequence diagrams will show the flow of actions for purchasing a ticket and managing session data.
 5.3 Data Flow Diagrams
 Data flow diagrams will depict the flow of information within the system, such as how movie session data is displayed to users and how bookings are processed.
-6. External Interface Requirements
+7. External Interface Requirements
 6.1 User Interfaces
 ●	A user-friendly interface for customers to browse movies, view sessions, and buy tickets.
 ●	An admin interface for cinema staff to manage movies and sessions.
 6.2 Hardware Interfaces
-●	[Fill in…]
+●	Depending on the hardware user has, site may adapt and become simpler(?) in a way that avoids technical hinderances.
 6.3 Software Interfaces
-●	[Fill in…]
+●	Depending on the software user currently utilizes, site may adapt in a way that avoids technical hinderances.
 6.4 Communication Interfaces
 ●	[Fill in…]
-7. Testing and Validation
+8. Testing and Validation
 7.1 Test Case
-[Fill in…]
+●	
 7.2 Validation Criteria
-[Fill in…]
-8. Maintenance and Support
+●	
+9. Maintenance and Support
 8.1 Maintenance Procedures
-[Fill in…]
+● Internal code and database is to be automatically backed up and changed upon the release of new content or features, as well as to restore the site in the event of cyberattack.
 8.2 Support and Helpdesk
 [Fill in…]
-9. Appendices
+10. Appendices
 9.1 Glossary
 ●	SRS: Software Requirements Specification
 ●	GDPR: General Data Protection Regulation
